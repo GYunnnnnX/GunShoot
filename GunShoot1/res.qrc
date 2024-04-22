@@ -1,0 +1,43 @@
+<RCC>
+    <qresource prefix="/">
+        <file>AMan0.png</file>
+        <file>AMan0-.png</file>
+        <file>AMan1.png</file>
+        <file>AMan1-.png</file>
+        <file>AMan2.png</file>
+        <file>AMan2-.png</file>
+        <file>AWoman0.png</file>
+        <file>AWoman0-.png</file>
+        <file>AWoman1.png</file>
+        <file>AWoman1-.png</file>
+        <file>AWoman2.png</file>
+        <file>AWoman2-.png</file>
+        <file>BMan0.png</file>
+        <file>BMan0-.png</file>
+        <file>BMan1.png</file>
+        <file>BMan1-.png</file>
+        <file>BMan2.png</file>
+        <file>BMan2-.png</file>
+        <file>BWoman0.png</file>
+        <file>BWoman0-.png</file>
+        <file>BWoman1.png</file>
+        <file>BWoman1-.png</file>
+        <file>BWoman2.png</file>
+        <file>BWoman2-.png</file>
+        <file>Chen0.png</file>
+        <file>Chen0-.png</file>
+        <file>Chen1.png</file>
+        <file>Chen1-.png</file>
+        <file>Chen2.png</file>
+        <file>Chen2-.png</file>
+        <file>Chen3.png</file>
+        <file>Chen3-.png</file>
+        <file>Chen4.png</file>
+        <file>Chen4-.png</file>
+        <file>Chen5.png</file>
+        <file>Chen5-.png</file>
+        <file>background.png</file>
+        <file>background1.png</file>
+        <file>background2.png</file>
+    </qresource>
+</RCC>
