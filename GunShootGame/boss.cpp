@@ -1,0 +1,139 @@
+#include "boss.h"
+#include<QKeyEvent>
+#include<QPainter>
+#include<QPainterPath>
+#include<QDebug>
+#include<QPixmap>
+#include<QGraphicsItem>
+QRectF Boss::boundingRect()const
+{
+    return QRect(0, 0, 50, 50);
+}
+QPainterPath Boss::shape() const
+{
+    QPainterPath path;
+    path.addRect(0,0,50,50);
+    return path;
+}
+void Boss::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    if(dead&&isVisible())
+    {if(deadAni==1&&face==1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist1[0]);return;
+        }
+        if(deadAni==2&&face==1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist1[1]);return;
+        }
+        if(deadAni==3&&face==1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist1[0]);return;
+        }
+        if(deadAni==4&&face==1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist1[1]);return;
+        }
+        if(deadAni==1&&face==-1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist2[0]);return;
+        }
+        if(deadAni==2&&face==-1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist2[1]);return;
+        }
+        if(deadAni==3&&face==-1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist2[0]);return;
+        }
+        if(deadAni==4&&face==-1)
+        {
+            painter->drawPixmap(0,0,50,50,Dlist2[1]);return;
+        }
+    }
+    else
+    {if(inSkill3&&isVisible()&&face==1)
+        {
+            if(skilln==0)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill0.png"));
+            }
+            if(skilln==1)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill1.png"));
+            }
+            if(skilln==2)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill2.png"));
+            }
+            if(skilln==3)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill3.png"));
+            }
+        }
+        if(inSkill3&&isVisible()&&face==-1)
+        {
+            if(skilln==0)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill0-.png"));
+            }
+            if(skilln==1)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill1-.png"));
+            }
+            if(skilln==2)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill2-.png"));
+            }
+            if(skilln==3)
+            {
+                painter->drawPixmap(0,0,50,50,QPixmap(":/skill3-.png"));
+            }
+        }
+        if(beHit&&isVisible()&&!inSkill3)
+        {
+            if(face==1)
+                painter->drawPixmap(0,0,50,50,Slist1);
+            if(face==-1)
+                painter->drawPixmap(0,0,50,50,Slist2);
+        }
+        if(!beHit&&isVisible()&&!inSkill3)
+        {if(face==1)
+                painter->drawPixmap(0,0,50,50,QPixmap(":/Boss0.png"));
+            if(face==-1)
+                painter->drawPixmap(0,0,50,50,QPixmap(":/Boss0-.png"));
+        }
+    }
+}
+Boss::Boss()
+{
+    Slist1=QPixmap(":/BossRed.png");
+    Slist2=QPixmap(":/BossRed-.png");
+    Dlist1[0]=QPixmap(":/Dead.png");
+    Dlist1[1]=QPixmap(":/DeadRed.png");
+    Dlist2[0]=QPixmap(":/Dead-.png");
+    Dlist2[1]=QPixmap(":/DeadRed-.png");
+}
+void Boss::beingHit()
+{
+    beHit=true;
+    life-=1;
+    update();
+    if(life==0){QTimer::singleShot(50,[=](){dead=true;return;});}
+    QTimer::singleShot(500,[=](){beHit=false;this->update();});
+}
+void Boss::die()
+{
+    deadAni++;update();
+    if(deadAni==5){this->hide();}
+}
+void Boss::reborn(){
+    life=100;
+    dead=false;
+    deadForALongTime=false;
+    beHit=false;
+    deadAni=0;
+    face=-1;
+    update();
+}
+
